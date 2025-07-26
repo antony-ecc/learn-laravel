@@ -61,7 +61,7 @@
                     <tr>
                         <th class="px-6 py-4 font-medium text-center text-gray-900">No</th>
                         <th class="px-6 py-4 font-medium text-center text-gray-900">Title</th>
-                        <th class="px-6 py-4 font-medium  text-center text-gray-900">Status</th>
+                        <th class="px-6 py-4 font-medium text-center text-gray-900">Status</th>
                         <th class="w-1/6 px-6 py-4 font-medium text-center text-gray-900">Action</th>
                     </tr>
                 </thead>
