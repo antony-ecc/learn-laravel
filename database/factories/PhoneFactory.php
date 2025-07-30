@@ -6,9 +6,9 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Phone>
  */
-class BlogFactory extends Factory
+class PhoneFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -20,10 +20,9 @@ class BlogFactory extends Factory
         $id_min = User::pluck('id')->min();
         $id_max = User::pluck('id')->max();
         return [
-            'title' => fake()->sentence(),
-            'deskripsi' => fake()->paragraph(),
-            'status' => fake()->randomElement(['Active', 'Inactive']),
-            'user_id' => fake()->numberBetween($id_min, $id_max),
+            'phone_number' => fake()->phoneNumber(),
+            'provider_name' => fake()->company(),
+            'user_id' => fake()->numberBetween($id_min, $id_max)
         ];
     }
 }
