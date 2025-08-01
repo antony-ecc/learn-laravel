@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PhoneController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -12,14 +14,21 @@ Route::get('/', function () {
 //     return 'isi response';
 // })
 
-Route::get('/blogs', [BlogController::class,'index'])->name('blogs.index');
+Route::get('admin/blogs', [BlogController::class,'index'])->name('blogs.index');
 Route::get('/blogs/create', [BlogController::class, 'create'])->name('blog.create');
 Route::post('/blogs/store', [BlogController::class, 'store'])->name('blog.store');
 Route::get('/blogs/{id}/detail', [BlogController::class, 'show'])->name('blog.show');
 Route::get('blogs/{id}/edit', [BlogController::class, 'edit'])->name('blog.edit');
 Route::patch('blogs/{id}/update', [BlogController::class, 'update'])->name('blog.update');
 Route::delete('/blogs/{id}/delete', [BlogController::class, 'delete'])->name('blog.delete');
+Route::get('blogs/trash', [BlogController::class, 'trash'])->name('blog.trash');
+Route::get('/blogs/{id}/restore', [BlogController::class, 'restore'])->name('blog.restore');
 
+Route::get('/blogs', [BlogController::class, 'homepage'])->name('blogs.homepage');
+Route::get('/blogs/{id}', [BlogController::class, 'detail'])->name('blog.detail');
+
+Route::get('/phones', [PhoneController::class, 'index'])->name('phone.index');
+Route::get('/users', [UserController::class, 'index'])->name('users.index');
 
 // Route::get('/artikel', function() {
 //     return 'ini adalah halaman artikel';

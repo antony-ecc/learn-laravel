@@ -43,6 +43,8 @@
             </form>
 
             <a href="{{ route('blog.create') }}" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Create</a>
+
+            <a href="{{ route('blog.trash') }}" type="button" class="text-white bg-yellow-700 hover:bg-yellow-800 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-yellow-600 dark:hover:bg-yellow-700 focus:outline-none dark:focus:ring-yellow-800">Restore</a>
             </div>
             
         </div>
@@ -61,7 +63,7 @@
                     <tr>
                         <th class="px-6 py-4 font-medium text-center text-gray-900">No</th>
                         <th class="px-6 py-4 font-medium text-center text-gray-900">Title</th>
-                        <th class="px-6 py-4 font-medium  text-center text-gray-900">Status</th>
+                        <th class="px-6 py-4 font-medium text-center text-gray-900">Status</th>
                         <th class="w-1/6 px-6 py-4 font-medium text-center text-gray-900">Action</th>
                     </tr>
                 </thead>
