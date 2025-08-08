@@ -23,26 +23,52 @@
             Dibuat :
             <span class="px-2 py-1 rounded-full text-xs bg-yellow-100 text-green-700">{{ $blog->created_at->diffForHumans() }}</span>
         </p>
+        <p class="inline-text-sm text-gray-500 mb-4">Tag :
+            @foreach ($blog->tags as $tag)
+                <span class="px-2 py-1 mr-1 rounded-full text-xs bg-gray-200 text-gray-700">{{ $tag->name }}</span>
+            @endforeach
+        </p>
 
         <div class="text-gray-700 leading-relaxed mb-8">{{ $blog->deskripsi }}</div>
 
         <hr class="my-6">
 
+        <h2 class="text-xl font-semibold mb-4">Komentar</h2>
+
+        @foreach ($blog->comments as $comment)
+            <div class="mb-4 border-l-4 border-blue-500 pl-4">
+                <p class="text-gray-800 font-medium">{{ $comment->commenter_name }}</p>
+                <p class="text-gray-600 font-xs">{{ $comment->comment_text }}</p>
+                <p class="text-gray-400 font-medium">{{ $comment->created_at->diffForHumans() }}</p>
+            </div>
+            
+        @endforeach
+
+        @if ($blog->comments->isEmpty())
+        <p class="text-gray-500 italic mb-4">Belum ada komentar</p>
+        @endif
+
         <div class="mt-8">
             <h3 class="text-lg font-semibold mb-2">Tinggalkan Komentar</h3>
-            <form action="" method="POST" class="space-y-4">
+            @if (session('success'))
+                <div class="mb-4 px-4 py-2 bg-green-100 border border-green-400 text-green-800 rounded">{{ session('success') }}</div>
+            @elseif (session('filed'))
+                <div class="mb-4 px-4 py-2 bg-red-100 border border-red-400 text-red-800 rounded">{{ session('failed') }}</div>
+            @endif
+
+            <form action="{{ route('comment.store', $blog->id) }}" method="POST" class="space-y-4">
                 @csrf
                 <div>
                     <label for="name" class="block font-medium">Nama</label>
                     <input type="text" name="name" id="name" required class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-blue-500">
                     @error('message')
-                    <div class="mt-2 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">{{ $message}}</div>
+                    <div class="mt-2 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">{{ $message }}</div>
                     @enderror
 
                     <label for="pesan" class="block font-medium">Pesan</label>
                     <input type="text" name="message" id="message" required class="w-full border border-gray-300 rounded px-3 py-2 focus:ring-1 focus:ring-blue-500">
                     @error('message')
-                    <div class="mt-2 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">{{ $message}}</div>
+                    <div class="mt-2 p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50">{{ $message }}</div>
                     @enderror
                 </div>
 
