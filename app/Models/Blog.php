@@ -18,6 +18,7 @@ class Blog extends Model
         'deskripsi',
         'status',
         'user_id',
+        'image',
     ];
 
     public function user(): BelongsTo

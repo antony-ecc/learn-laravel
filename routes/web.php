@@ -9,6 +9,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PhoneController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\TagController;
+use Illuminate\Support\Facades\Storage;
 
 Route::get('/', function () {
     return view('welcome');
@@ -55,7 +56,13 @@ Route::middleware('guest')->group(function() {
 Route::get('/blogs', [BlogController::class, 'homepage'])->name('blogs.homepage');
 Route::get('/blogs/{id}', [BlogController::class, 'detail'])->name('blog.detail');
 
+Route::get('/upload', function() {
+    return Storage::disk('public')->put('example2.txt', 'Ini konten example2.txt');
+});
 
+Route::get('/file-uploaded', function() {
+    return asset('storage/example2.txt');
+});
 
 // Route::get('/artikel', function() {
 //     return 'ini adalah halaman artikel';
